@@ -1,25 +1,14 @@
 # pip install flask
+
 pip install Flask flask-swagger-ui
 
-
-
-
-
-CHuyển đổi số  016....
-
-
-
+CHuyển đổi số 016....
 
 <!--  -->
 <!--  -->
 
-  
-  
-
-
-
-Thêm 
-Sửa 
+Thêm
+Sửa
 sửa cũng cần kiểm tra trùng lặp
-Xóa 
+Xóa
 Xuất
