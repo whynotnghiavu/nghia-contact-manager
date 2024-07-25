@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý danh bạ</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
     <h1>Danh bạ</h1>
@@ -12,7 +15,7 @@
       <thead>
         <tr>
           <th>STT</th>
-                <th><input type="checkbox" id="selectAll"></th>
+          <th><input type="checkbox" id="selectAll" /></th>
           <th>Số điện thoại</th>
           <th>Tên</th>
           <th>Chỉnh sửa</th>
@@ -23,7 +26,7 @@
         {% for vcard in vcards %}
         <tr>
           <td>{{ loop.index }}</td>
-                <td><input type="checkbox" class="selectRow"></td>
+          <td><input type="checkbox" class="selectRow" /></td>
           <td>{{ vcard.name }}</td>
           <td>{{ vcard.email }}</td>
           <td class="actions">
@@ -35,8 +38,6 @@
       </tbody>
     </table>
 
-
-
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
