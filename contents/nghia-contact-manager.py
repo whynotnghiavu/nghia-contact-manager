@@ -1,18 +1,8 @@
-# import re
-# import quopri
+import quopri
 
 
-# def decode_vcard_line(line):
-#     match = re.match(r'(.+?)CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:(.+)', line)
-#     if match:
-#         field, encoded_value = match.groups()
-#         decoded_value = quopri.decodestring(encoded_value).decode('utf-8')
-#         return field.strip(), decoded_value.strip()
-#     return line.split(':', 1)
 
 
-# N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:;=4D=E1=BA=B9;;;
-# FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=4D=E1=BA=B9
 def parse_vcard(contents):
     for i, content in enumerate(contents):
         if content.startswith('FN;'):
@@ -24,6 +14,15 @@ def parse_vcard(contents):
     name = name.split(':')[-1]
     while "==" in name:
         name = name.replace("==", "=")
+    name = quopri.decodestring(name)
+    name = name.decode('utf-8')
+
+
+
+
+
+
+
 
     phone = contents[-1]
     phone = phone.split(':')[-1]
