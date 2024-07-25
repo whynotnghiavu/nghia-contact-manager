@@ -37,3 +37,13 @@ Trước khi lưu phải sort theo tên
 
 <!--  -->
 sửa cũng cần kiểm tra trùng lặp
+
+
+
+
+
+
+        # if phone!= vcard["phone"]: thêm dữ liệu mới
+        # if phone= vcard["phone"]: xét name
+        #     if name = vcard["name"]: bỏ qua không làm gì cả
+        #     if name != vcard["name"]: ghi vào file error.txt

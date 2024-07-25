@@ -14,6 +14,24 @@ def index():
 
     return render_template('index.html', vcards=vcards)
 
+ 
+
+
+
+
+
+
+ 
+def process_vcard(vcards, phone, name):
+    phone_exists = False
+    for vcard in vcards:
+        if phone == vcard["phone"]:
+            phone_exists = True
+            if name != vcard["name"]:
+                write("data/error.txt", phone, name)
+            break
+    if not phone_exists:
+        write("data/database.txt", phone, name)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
@@ -24,56 +42,34 @@ def add():
         name = request.form.get('name')
 
         vcards = read("data/database.txt")
-
-        phone_exists = False
-
-        for vcard in vcards:
-            if phone == vcard["phone"]:
-                phone_exists = True
-                if name != vcard["name"]:
-                    write("data/error.txt", phone, name)
-                break
-
-        if not phone_exists:
-            write("data/database.txt", phone, name)
+        process_vcard(vcards, phone, name)
 
         return redirect(url_for('index'))
-
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if 'file' not in request.files:
+    if 'file' not in request.files or request.files['file'].filename == '':
         return redirect(url_for('index'))
 
     file = request.files['file']
-    if file.filename == '':
-        return redirect(url_for('index'))
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+    file.save(filepath)
 
-    if file:
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filepath)
+    new_vcards = read_vcf(filepath)
+    vcards = read("data/database.txt")
 
-        new_vcards = read_vcf(filepath)
-        vcards = read("data/database.txt")
+    for new_vcard in new_vcards:
+        process_vcard(vcards, new_vcard["phone"], new_vcard["name"])
 
-        for new_vcard in new_vcards:
-            
-            phone_exists = False
-
-            for vcard in vcards:
-                if new_vcard["phone"] == vcard["phone"]:
-                    phone_exists = True
-                    if new_vcard["name"] != vcard["name"]:
-                        write("data/error.txt", new_vcard["phone"], new_vcard["name"])
-                    break
-
-            if not phone_exists:
-                write("data/database.txt", new_vcard["phone"], new_vcard["name"])
+    return redirect(url_for('index'))
  
 
-        return redirect(url_for('index'))
-    
 
+
+
+
+
+ 
 
 
 
