@@ -5,7 +5,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, Flask!'
+    with open("phone_numbers.txt", "r") as file:
+        content = file.read()
+    
+    return f"<pre>{content}</pre>"
 
 if __name__ == '__main__':
     app.run(debug=True)
