@@ -30,15 +30,3 @@ def write_vcf(vcards, vcf_file_path):
             vcf_file.write(f'TEL;CELL;PREF:{phone}\n')
             vcf_file.write('END:VCARD\n')
             vcf_file.write('\n')
-
-
-def export():
-    txt_file_path = "data/database.txt"
-    vcf_file_path = "data/nghia-contact-manager.vcf"
-
-    vcards = read_txt(txt_file_path)
-    write_vcf(vcards, vcf_file_path)
-
-
-if __name__ == '__main__':
-    export()
