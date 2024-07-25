@@ -1,7 +1,11 @@
 import os
+import logging
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from modules.database import read, write
 from modules.vcard import read_vcf
+
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 app = Flask(__name__)
@@ -14,11 +18,6 @@ def index():
 
     return render_template('index.html', vcards=vcards)
 
- 
-
-import logging
-
-logging.basicConfig(level=logging.INFO)
 
 def process_vcard(vcards, phone, name):
     phone_exists = False
@@ -26,15 +25,14 @@ def process_vcard(vcards, phone, name):
         if phone == vcard["phone"]:
             phone_exists = True
             if name == vcard["name"]:
-                logging.info(f"Số điện thoại {phone} đã tồn tại với cùng tên {name}. Không thực hiện hành động nào.")
+                logging.info(f"Số điện thoại {phone} và tên {name} đã tồn tại. (Bỏ qua)")
             else:
-                logging.info(f"Số điện thoại {phone} tồn tại nhưng với tên khác. Thêm vào nhật ký lỗi.")
+                logging.info(f"Số điện thoại {phone} tồn tại nhưng với tên khác. (Ghi vào file error.txt)")
                 write("data/error.txt", phone, name)
             break
     if not phone_exists:
-        logging.info(f"Số điện thoại {phone} chưa tồn tại. Thêm dữ liệu mới.")
+        logging.info(f"Số điện thoại {phone} chưa có. (Thêm dữ liệu)")
         write("data/database.txt", phone, name)
-
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -49,6 +47,7 @@ def add():
         process_vcard(vcards, phone, name)
 
         return redirect(url_for('index'))
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -66,18 +65,6 @@ def upload_file():
         process_vcard(vcards, new_vcard["phone"], new_vcard["name"])
 
     return redirect(url_for('index'))
- 
-
-
-
-
-
-
-
-
-
-
-
 
 
 @app.route('/error')
