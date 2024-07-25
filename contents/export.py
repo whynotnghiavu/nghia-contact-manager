@@ -9,13 +9,10 @@ def read_txt(txt_file_path):
 
     for content in contents:
         content = content.strip()
-        if content:
-            phone, name = content.split(',')
-            vcard = {
-                'name': name,
-                'phone': phone
-            }
-            vcards.append(vcard)
+
+        phone, name = content.split(',')
+
+        vcards.append({'name': name, 'phone': phone})
 
     return vcards
 
