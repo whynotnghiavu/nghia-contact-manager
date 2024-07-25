@@ -33,7 +33,22 @@ def add():
 def api_add():
     phone = request.form.get('phone')
     name = request.form.get('name')
-#     #     vcards.append({'phone': phone, 'name': name})
+
+    vcards = get_all_vcards_from_database("data/database.txt")
+
+    
+    for vcard in vcards:
+        print(vcard["phone"])
+        print(vcard["name"])
+
+        # if phone!= vcard["phone"]: thêm dữ liệu mới
+        # if phone= vcard["phone"]: xét name
+        #     if name = vcard["name"]: bỏ qua không làm gì cả
+        #     if name != vcard["name"]: ghi vào file error.txt
+        
+ 
+
+
     return redirect(url_for('index'))
 
 
