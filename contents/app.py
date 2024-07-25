@@ -1,7 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for
-from modules.database import read, write
+import os
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from modules.database import read, write, read_vcf
+
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads/'
+
+
+
+
+
+
 
 
 @app.route('/')
@@ -36,6 +45,24 @@ def add():
             write("data/database.txt", phone, name)
 
         return redirect(url_for('index'))
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return redirect(url_for('index'))
+    
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(url_for('index'))
+
+    if file:
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(filepath)
+        
+        vcards = read_vcf(filepath)
+
+        return jsonify(vcards)
+
 
 
 @app.route('/error')
