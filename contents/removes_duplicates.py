@@ -1,5 +1,5 @@
 # Read the file and get its contents
-with open("error.txt", "r", encoding="utf-8") as file:
+with open("data/error.txt", "r", encoding="utf-8") as file:
     contents = file.readlines()
 
 # Print the number of lines before removing duplicates
