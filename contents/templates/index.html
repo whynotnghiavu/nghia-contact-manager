@@ -41,26 +41,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Phone Numbers</h1>
+        <h1>Danh bạ</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Tick</th>
-                    <th>Phone Number</th>
-                    <th>Actions</th>
+                    <th>STT</th>
+                    <th></th>
+                    <th>Số điện thoại</th>
+                    <th>Tên</th>
+                    <th>Chỉnh sửa</th>
                 </tr>
             </thead>
+
             <tbody>
-                {% for number in phone_numbers %}
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>{{ number }}</td>
-                    <td class="actions">
-                        <button onclick="editNumber('{{ number }}')">Edit</button>
-                        <button onclick="deleteNumber('{{ number }}')">Delete</button>
-                    </td>
-                </tr>
-                {% endfor %}
+                
+
+
+
+
+
+
+
+
+
+
+{% set i = 0 %}
+{% for number in vcards %}
+<tr>
+    {% set i = i + 1 %}
+<td>{{ i }}</td>
+<td><input type="checkbox"></td>
+<td>{{ number }}</td>
+<td class="actions">
+<button onclick="editNumber('{{ number }}')">Edit</button>
+<button onclick="deleteNumber('{{ number }}')">Delete</button>
+</td>
+</tr>
+{% endfor %}
+
+
+
+
+
             </tbody>
         </table>
     </div>
