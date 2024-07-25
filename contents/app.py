@@ -53,9 +53,31 @@ def upload_file():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(filepath)
 
-        vcards = read_vcf(filepath)
+        new_vcards = read_vcf(filepath)
+        vcards = read("data/database.txt")
 
-        return jsonify(vcards)
+        for new_vcard in new_vcards:
+            
+            phone_exists = False
+
+            for vcard in vcards:
+                if new_vcard["phone"] == vcard["phone"]:
+                    phone_exists = True
+                    if new_vcard["name"] != vcard["name"]:
+                        write("data/error.txt", new_vcard["phone"], new_vcard["name"])
+                    break
+
+            if not phone_exists:
+                write("data/database.txt", new_vcard["phone"], new_vcard["name"])
+ 
+
+        return redirect(url_for('index'))
+    
+
+
+
+
+
 
 
 @app.route('/error')
