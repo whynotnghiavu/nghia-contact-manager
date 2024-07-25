@@ -22,3 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+function editNumber(number) {
+  alert("Edit: " + number);
+}
+function deleteNumber(number) {
+  alert("Delete: " + number);
+}

@@ -1,0 +1,33 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  .actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+
+
+   
+
+tr.selected {
+  background-color: #d3d3d3;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}

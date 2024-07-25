@@ -4,28 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý danh bạ</title>
-    <style>
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      table,
-      th,
-      td {
-        border: 1px solid black;
-      }
-      th,
-      td {
-        padding: 8px;
-        text-align: left;
-      }
-
-      .actions button {
-        margin: 0 5px;
-        padding: 5px 10px;
-        cursor: pointer;
-      }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
     <h1>Danh bạ</h1>
@@ -33,7 +12,7 @@
       <thead>
         <tr>
           <th>STT</th>
-          <th><input type="checkbox" /></th>
+                <th><input type="checkbox" id="selectAll"></th>
           <th>Số điện thoại</th>
           <th>Tên</th>
           <th>Chỉnh sửa</th>
@@ -44,7 +23,7 @@
         {% for vcard in vcards %}
         <tr>
           <td>{{ loop.index }}</td>
-          <td><input type="checkbox" /></td>
+                <td><input type="checkbox" class="selectRow"></td>
           <td>{{ vcard.name }}</td>
           <td>{{ vcard.email }}</td>
           <td class="actions">
@@ -56,13 +35,8 @@
       </tbody>
     </table>
 
-    <script>
-      function editNumber(number) {
-        alert("Edit: " + number);
-      }
-      function deleteNumber(number) {
-        alert("Delete: " + number);
-      }
-    </script>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
