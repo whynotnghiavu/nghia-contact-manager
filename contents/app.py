@@ -10,11 +10,9 @@ def index():
     vcards = []
 
     for content in contents:
-        phone, name = content.split(',')
+        phone, name = content.strip().split(',')
 
-        vcard = {}
-        vcard['name'] = name
-        vcard['phone'] = phone
+        vcard = {'name': name, 'phone': phone}
         vcards.append(vcard)
 
     return render_template('index.html', vcards=vcards)
