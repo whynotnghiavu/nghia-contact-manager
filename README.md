@@ -14,7 +14,7 @@ CHuyển đổi số  016....
 <!--  -->
 <!--  -->
 Bước tiếp theo làm cái thêm mới
-<!-- Nhập thủ công -->
+<!-- Nhập thủ công --> xong thử công
 <!-- Chọn tập tin -->
 ...nhiều loại file
 <!--  -->

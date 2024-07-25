@@ -11,31 +11,33 @@ def index():
     return render_template('index.html', vcards=vcards)
 
 
-@app.route('/add')
+
+
+@app.route('/add', methods=['GET', 'POST'])
 def add():
-    return render_template('add.html')
+    if request.method == 'GET':
+        return render_template('add.html')
+    if request.method == 'POST':
 
 
-@app.route('/api/add', methods=['POST'])
-def api_add():
-    phone = request.form.get('phone')
-    name = request.form.get('name')
+        phone = request.form.get('phone')
+        name = request.form.get('name')
 
-    vcards = read("data/database.txt")
+        vcards = read("data/database.txt")
 
-    phone_exists = False
+        phone_exists = False
 
-    for vcard in vcards:
-        if phone == vcard["phone"]:
-            phone_exists = True
-            if name != vcard["name"]:
-                write("data/error.txt", phone, name)
-            break
+        for vcard in vcards:
+            if phone == vcard["phone"]:
+                phone_exists = True
+                if name != vcard["name"]:
+                    write("data/error.txt", phone, name)
+                break
 
-    if not phone_exists:
-        write("data/database.txt", phone, name)
+        if not phone_exists:
+            write("data/database.txt", phone, name)
 
-    return redirect(url_for('index'))
+        return redirect(url_for('index'))
 
 
 # # Các route khác như chỉnh sửa, xóa có thể được thêm vào đây
