@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vCards Table</title>
+    <title>Quản lý danh bạ</title>
     <style>
         table {
             width: 100%;
@@ -16,27 +16,64 @@
             padding: 8px;
             text-align: left;
         }
+    
+    .actions button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
-    <h1>vCards Table</h1>
+        <h1>Danh bạ</h1>
     <table>
+
+
+
+
+
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th><input type="checkbox"></th>
+                <th>Số điện thoại</th>
+                <th>Tên</th>
+                <th>Chỉnh sửa</th>
             </tr>
         </thead>
+
+
+
+
+
+
+
+
         <tbody>
             {% for vcard in vcards %}
             <tr>
                 <td>{{ loop.index }}</td>
+                <td><input type="checkbox"></td>
                 <td>{{ vcard.name }}</td>
                 <td>{{ vcard.email }}</td>
+                <td class="actions">
+                <button onclick="editNumber('{{ number }}')">Edit</button>
+                <button onclick="deleteNumber('{{ number }}')">Delete</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+
+    
+    <script>
+        function editNumber(number) {
+            alert('Edit: ' + number);
+        }
+        function deleteNumber(number) {
+            alert('Delete: ' + number);
+        }
+    </script>
 </body>
 </html>
