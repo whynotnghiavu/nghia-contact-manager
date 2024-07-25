@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -16,6 +16,17 @@ def index():
         vcards.append(vcard)
 
     return render_template('index.html', vcards=vcards)
+
+
+@app.route('/add', methods=['POST'])
+def add():
+    # phone = request.form.get('phone')
+    # name = request.form.get('name')
+    # if phone and name:
+    #     vcards.append({'phone': phone, 'name': name})
+    return redirect(url_for('index'))
+
+# Các route khác như chỉnh sửa, xóa có thể được thêm vào đây
 
 
 if __name__ == '__main__':
