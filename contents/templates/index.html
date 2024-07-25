@@ -20,16 +20,57 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        pre {
-            margin: 0;
-            font-size: 16px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Phone Numbers</h1>
-        <pre>{{ content }}</pre>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tick</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for number in phone_numbers %}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>{{ number }}</td>
+                    <td class="actions">
+                        <button onclick="editNumber('{{ number }}')">Edit</button>
+                        <button onclick="deleteNumber('{{ number }}')">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+    <script>
+        function editNumber(number) {
+            alert('Edit: ' + number);
+        }
+        function deleteNumber(number) {
+            alert('Delete: ' + number);
+        }
+    </script>
 </body>
 </html>
