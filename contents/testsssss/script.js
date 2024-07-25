@@ -1,16 +1,24 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-    const table = document.getElementById('myTable');
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const rowCheckboxes = document.querySelectorAll('.selectRow');
 
-    table.addEventListener('click', (event) => {
-        const target = event.target;
-        if (target.tagName === 'TD') {
-            const row = target.parentNode;
-            const previouslySelected = table.querySelector('tr.selected');
-            if (previouslySelected) {
-                previouslySelected.classList.remove('selected');
-            }
-            row.classList.add('selected');
-        }
+    // Khi chọn tất cả
+    selectAllCheckbox.addEventListener('change', (event) => {
+        rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = event.target.checked;
+            checkbox.closest('tr').classList.toggle('selected', event.target.checked);
+        });
+    });
+
+    // Khi chọn các hàng riêng lẻ
+    rowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            checkbox.closest('tr').classList.toggle('selected', checkbox.checked);
+            
+            // Cập nhật trạng thái của ô chọn tất cả
+            const allChecked = Array.from(rowCheckboxes).every(cb => cb.checked);
+            selectAllCheckbox.checked = allChecked;
+        });
     });
 });
