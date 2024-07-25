@@ -18,27 +18,25 @@ def index():
 
 
 
+import logging
 
+logging.basicConfig(level=logging.INFO)
 
-
-
-Thêm log cho các trường hợp
-
-        # if phone!= vcard["phone"]: thêm dữ liệu mới
-        # if phone= vcard["phone"]: xét name
-        #     if name = vcard["name"]: bỏ qua không làm gì cả
-        #     if name != vcard["name"]: ghi vào file error.txt
- 
 def process_vcard(vcards, phone, name):
     phone_exists = False
     for vcard in vcards:
         if phone == vcard["phone"]:
             phone_exists = True
-            if name != vcard["name"]:
+            if name == vcard["name"]:
+                logging.info(f"Phone {phone} already exists with the same name {name}. No action taken.")
+            else:
+                logging.info(f"Phone {phone} exists but with a different name. Adding to error log.")
                 write("data/error.txt", phone, name)
             break
     if not phone_exists:
+        logging.info(f"Phone {phone} does not exist. Adding new entry.")
         write("data/database.txt", phone, name)
+
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
