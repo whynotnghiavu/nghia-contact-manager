@@ -54,11 +54,6 @@ def main():
     for vcard in vcards:
         print(vcard)
 
-#     for i, vcard in enumerate(vcards, start=1):
-#         print(f"**{i}.**")
-#         for key, value in vcard.items():
-#             print(f"  - **{key}:** {value}")
-#         print()
 
 
 if __name__ == '__main__':
