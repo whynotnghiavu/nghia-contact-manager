@@ -1,27 +1,13 @@
-
 def read(txt_file_path):
-    with open(txt_file_path, "r") as file:
-        contents = file.readlines()
     vcards = []
 
-    for content in contents:
-        phone, name = content.strip().split(',')
-
-        vcard = {'name': name, 'phone': phone}
-        vcards.append(vcard)
-
+    with open(txt_file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            phone, name = line.strip().split(',')
+            vcards.append({"phone": phone, "name": name})
     return vcards
 
 
-def write(txt_file_path):
-    with open(txt_file_path, "r") as file:
-        contents = file.readlines()
-    vcards = []
-
-    for content in contents:
-        phone, name = content.strip().split(',')
-
-        vcard = {'name': name, 'phone': phone}
-        vcards.append(vcard)
-
-    return vcards
+def write(txt_file_path, phone, name):
+    with open(txt_file_path, "w", encoding="utf-8") as file:
+        file.write(f"{phone},{name}\n")
