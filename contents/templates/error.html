@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% block title %}Trùng lặp số điện thoại{% endblock %} {% block
-content %}
+{% extends 'base.html' %} {% block title %}Trùng lặp số điện thoại{% endblock %}
+{% block content %}
 <h1>Trùng lặp số điện thoại</h1>
 
 <table>
@@ -21,8 +21,18 @@ content %}
       <td>{{ vcard.phone }}</td>
       <td>{{ vcard.name }}</td>
       <td class="actions">
-        <button onclick="editPhoneNumber('{{ vcard.phone }}')">Edit</button>
-        <button onclick="deletePhoneNumber('{{ vcard.phone }}')">Delete</button>
+        <button
+          class="edit-button"
+          onclick="editPhoneNumber('{{ vcard.phone }}','{{ vcard.name }}','error')"
+        >
+          Sửa
+        </button>
+        <button
+          class="delete-button"
+          onclick="deletePhoneNumber('{{ vcard.phone }}','{{ vcard.name }}','error')"
+        >
+          Xóa
+        </button>
       </td>
     </tr>
     {% endfor %}

@@ -74,15 +74,18 @@ def error():
     return render_template('error.html', vcards=vcards)
 
 
-@app.route('/delete/<phone>', methods=['POST'])
-def delete_vcard(phone):
-    vcards = read("data/database.txt")
+@app.route('/delete/<phone>/<name>/<file>', methods=['POST'])
+def delete_vcard(phone, name, file):
+    vcards = read(f"data/{file}.txt")
 
-    vcards = [vcard for vcard in vcards if vcard['phone'] != phone]
+    new_vcards = [vcard for vcard in vcards if not (vcard.get('phone') == phone and vcard.get('name') == name)]
 
-    write_new("data/database.txt", vcards)
+    write_new(f"data/{file}.txt", new_vcards)
 
-    return redirect(url_for('index'))
+    if file == "database":
+        return redirect(url_for('index'))
+    if file == "error":
+        return redirect(url_for('error'))
 
 
 if __name__ == '__main__':

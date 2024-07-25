@@ -23,9 +23,9 @@ function editPhoneNumber(phone) {
   alert("Edit: " + phone);
 }
 
-function deletePhoneNumber(phone) {
+function deletePhoneNumber(phone, name, file) {
   if (confirm("Bạn có chắc chắn muốn xóa số điện thoại này không?")) {
-    fetch(`/delete/${phone}`, {
+    fetch(`/delete/${phone}/${name}/${file}`, {
       method: "POST",
     }).then((response) => {
       if (response.ok) {

@@ -21,10 +21,15 @@ content %}
       <td>{{ vcard.phone }}</td>
       <td>{{ vcard.name }}</td>
       <td class="actions">
-        <button onclick="editPhoneNumber('{{ vcard.phone }}')">Sửa</button>
+        <button
+          class="edit-button"
+          onclick="editPhoneNumber('{{ vcard.phone }}','{{ vcard.name }}','database')"
+        >
+          Sửa
+        </button>
         <button
           class="delete-button"
-          onclick="deletePhoneNumber('{{ vcard.phone }}')"
+          onclick="deletePhoneNumber('{{ vcard.phone }}','{{ vcard.name }}','database')"
         >
           Xóa
         </button>

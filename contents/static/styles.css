@@ -67,8 +67,20 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.edit-button {
+  background-color: rgb(91, 255, 115);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.edit-button:hover {
+  background-color: rgb(0, 96, 14);
+}
+
 .delete-button {
-  background-color: red;
+  background-color: rgb(252, 73, 73);
   color: white;
   border: none;
   border-radius: 4px;
