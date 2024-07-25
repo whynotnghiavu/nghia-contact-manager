@@ -1,20 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
+from modules.database import get_all_vcards_from_database
 
 app = Flask(__name__)
 
 
-def get_all_vcards_from_database(txt_file_path):
-    with open(txt_file_path, "r") as file:
-        contents = file.readlines()
-    vcards = []
-
-    for content in contents:
-        phone, name = content.strip().split(',')
-
-        vcard = {'name': name, 'phone': phone}
-        vcards.append(vcard)
-
-    return vcards
 
 @app.route('/')
 def index():
@@ -69,7 +58,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
-# take note
-# readwrite
-# read
