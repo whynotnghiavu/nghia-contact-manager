@@ -3,64 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Rows in Table</title>
+    <title>vCards Table</title>
     <style>
-        .selected {
-            background-color: #d3d3d3;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <button onclick="selectAllRows()">Select All</button>
-    <button onclick="deselectAllRows()">Deselect All</button>
-
-    <table border="1" id="myTable">
+    <h1>vCards Table</h1>
+    <table>
         <thead>
             <tr>
-                <th>Select</th>
+                <th>STT</th>
                 <th>Name</th>
-                <th>Age</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
-            <tr onclick="toggleRowSelection(this)">
-                <td><input type="checkbox"></td>
-                <td>John Doe</td>
-                <td>30</td>
+            {% for vcard in vcards %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ vcard.name }}</td>
+                <td>{{ vcard.email }}</td>
             </tr>
-            <tr onclick="toggleRowSelection(this)">
-                <td><input type="checkbox"></td>
-                <td>Jane Smith</td>
-                <td>25</td>
-            </tr>
-            <!-- Add more rows as needed -->
+            {% endfor %}
         </tbody>
     </table>
-
-    <script>
-        function toggleRowSelection(row) {
-            const checkbox = row.querySelector('input[type="checkbox"]');
-            checkbox.checked = !checkbox.checked;
-            row.classList.toggle('selected', checkbox.checked);
-        }
-
-        function selectAllRows() {
-            const rows = document.querySelectorAll('#myTable tbody tr');
-            rows.forEach(row => {
-                const checkbox = row.querySelector('input[type="checkbox"]');
-                checkbox.checked = true;
-                row.classList.add('selected');
-            });
-        }
-
-        function deselectAllRows() {
-            const rows = document.querySelectorAll('#myTable tbody tr');
-            rows.forEach(row => {
-                const checkbox = row.querySelector('input[type="checkbox"]');
-                checkbox.checked = false;
-                row.classList.remove('selected');
-            });
-        }
-    </script>
 </body>
 </html>

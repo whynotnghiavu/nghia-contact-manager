@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý danh bạ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Danh bạ</h1> -->
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th></th>
+                    <th>Số điện thoại</th>
+                    <th>Tên</th>
+                    <th>Chỉnh sửa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+
+
+
+
+
+
+
+
+
+
+{% set i = 0 %}
+{% for number in vcards %}
+<tr>
+    {% set i = i + 1 %}
+<td>{{ i }}</td>
+<td><input type="checkbox"></td>
+<td>{{ number }}</td>
+<td class="actions">
+<button onclick="editNumber('{{ number }}')">Edit</button>
+<button onclick="deleteNumber('{{ number }}')">Delete</button>
+</td>
+</tr>
+{% endfor %}
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function editNumber(number) {
+            alert('Edit: ' + number);
+        }
+        function deleteNumber(number) {
+            alert('Delete: ' + number);
+        }
+    </script>
+</body>
+</html>
