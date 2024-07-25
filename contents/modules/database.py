@@ -9,5 +9,5 @@ def read(txt_file_path):
 
 
 def write(txt_file_path, phone, name):
-    with open(txt_file_path, "w", encoding="utf-8") as file:
+    with open(txt_file_path, "a", encoding="utf-8") as file:
         file.write(f"{phone},{name}\n")
