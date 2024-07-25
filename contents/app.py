@@ -1,6 +1,6 @@
 import os
 import logging
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file
 from modules.database import read, write, write_new
 from modules.vcard import read_vcf
 
@@ -90,11 +90,14 @@ def delete_vcard(phone, name, file):
 
 
 
-
-
-# @app.route('/export')
-# def export(): 
-# export
+@app.route('/export')
+def export():
+    
+    file_path = "data/database.txt"
+    file_path = "data/nghia-contact-manager.vcf"
+    
+    # Trả về file để người dùng tải xuống
+    # return send_file(oooooo, as_attachment=True)
 
 
 
