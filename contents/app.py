@@ -16,8 +16,6 @@ def index():
 
  
 
-
-
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -28,14 +26,15 @@ def process_vcard(vcards, phone, name):
         if phone == vcard["phone"]:
             phone_exists = True
             if name == vcard["name"]:
-                logging.info(f"Phone {phone} already exists with the same name {name}. No action taken.")
+                logging.info(f"Số điện thoại {phone} đã tồn tại với cùng tên {name}. Không thực hiện hành động nào.")
             else:
-                logging.info(f"Phone {phone} exists but with a different name. Adding to error log.")
+                logging.info(f"Số điện thoại {phone} tồn tại nhưng với tên khác. Thêm vào nhật ký lỗi.")
                 write("data/error.txt", phone, name)
             break
     if not phone_exists:
-        logging.info(f"Phone {phone} does not exist. Adding new entry.")
+        logging.info(f"Số điện thoại {phone} chưa tồn tại. Thêm dữ liệu mới.")
         write("data/database.txt", phone, name)
+
 
 
 @app.route('/add', methods=['GET', 'POST'])
