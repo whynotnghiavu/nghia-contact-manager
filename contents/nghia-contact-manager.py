@@ -11,50 +11,30 @@
 #     return line.split(':', 1)
 
 
-
-
 # N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:;=4D=E1=BA=B9;;;
 # FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=4D=E1=BA=B9
-def parse_vcard(temp):
-    print(temp)
-    temp = "".join(temp)
-    print(temp)
+def parse_vcard(contents):
+    for i, content in enumerate(contents):
+        if content.startswith('FN;'):
+            break
+    contents = contents[i:]
+
+    name = contents[:-1]
+    name = "".join(name)
+    name = name.split(':')[-1]
+    while "==" in name:
+        name = name.replace("==", "=")
+
+    phone = contents[-1]
+    phone = phone.split(':')[-1]
+
+    vcard = {}
+    vcard['name'] = name
+    vcard['phone'] = phone
+    return vcard
 
 
-    return "vcard"
-
-    
-    # vcard = {}
-
-    # for line in temp:
-
-
-    #     # line.startswith('N;'):
-    #     #     # field, name = decode_vcard_line(line)
-    #     #     # vcard['Name'] = name
-    #     #     vcard['name'] = line
-    #     # elif
-
-
-    #     if  line.startswith('FN;'):
-    #         # field, full_name = decode_vcard_line(line)
-    #         # vcard['Full Name'] = full_name
-    #         vcard['full_name'] = line
-
-
-
-
-    #     elif line.startswith('TEL;'):
-    #         phone = line.split(':')[-1]
-    #         vcard['phone'] = phone.strip()
-    # return vcard
-
-
-
-
-
-
-def read_vcf(vcf_file_path): 
+def read_vcf(vcf_file_path):
     with open(vcf_file_path, 'r', encoding='utf-8') as vcf_file:
         contents = vcf_file.readlines()
 
@@ -74,7 +54,6 @@ def read_vcf(vcf_file_path):
             temp.append(content)
 
     return vcards
-
 
 
 def main():
