@@ -74,6 +74,18 @@ def error():
     return render_template('error.html', vcards=vcards)
 
 
-# # Các route khác như chỉnh sửa, xóa có thể được thêm vào đây
+
+
+@app.route('/delete/<phone>', methods=['POST'])
+def delete_vcard(phone):
+    vcards = read("data/database.txt")
+    
+    vcards = [vcard for vcard in vcards if vcard['phone'] != phone]
+    
+    return redirect(url_for('index'))
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
