@@ -1,0 +1,20 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Flask API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/hello": {
+        "get": {
+          "summary": "Trả về một thông điệp chào.",
+          "responses": {
+            "200": {
+              "description": "Trả về một thông điệp chào."
+            }
+          }
+        }
+      }
+    }
+  }
+  
