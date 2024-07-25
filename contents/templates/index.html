@@ -12,24 +12,13 @@
   <body>
     <nav>
       <ul>
-        <li><a href="{{ url_for('index') }}">index</a></li>
-        <li><a href="{{ url_for('add') }}">Page 2</a></li>
+        <li><a href="{{ url_for('index') }}">Danh bạ</a></li>
+        <li><a href="{{ url_for('add') }}">Thêm mới</a></li>
       </ul>
     </nav>
 
     <h1>Danh bạ</h1>
 
-    <!-- Form thêm mới -->
-    <h2>Thêm mới số điện thoại</h2>
-    <form action="/add" method="post">
-      <label for="phone">Số điện thoại:</label>
-      <input type="text" id="phone" name="phone" required />
-      <label for="name">Tên:</label>
-      <input type="text" id="name" name="name" required />
-      <button type="submit">Thêm mới</button>
-    </form>
-
-    <!-- Bảng danh bạ -->
     <table>
       <thead>
         <tr>
