@@ -1,36 +1,39 @@
-Hãy tạo quá trình ngược lại
-
-
+import quopri
 
 def read_txt(txt_file_path):
-    with open(txt_file_path, 'r', encoding='utf-8') as vcf_file:
-        contents = vcf_file.readlines()
+    with open(txt_file_path, 'r', encoding='utf-8') as txt_file:
+        contents = txt_file.readlines()
 
     vcards = []
-    temp = []
-
+    
     for content in contents:
-
         content = content.strip()
-        print(content)
-        phone, name = content.split(',')
- 
+        if content:  # Ensure the line is not empty
+            phone, name = content.split(',')
+            vcard = {
+                'name': name,
+                'phone': phone
+            }
+            vcards.append(vcard)
+
     return vcards
 
-
-
+def write_vcf(vcards, vcf_file_path):
+    with open(vcf_file_path, 'w', encoding='utf-8') as vcf_file:
+        for vcard in vcards:
+            vcf_file.write('BEGIN:VCARD\n')
+            vcf_file.write('VERSION:3.0\n')
+            vcf_file.write(f'FN:{quopri.encodestring(vcard["name"].encode("utf-8")).decode("utf-8")}\n')
+            vcf_file.write(f'TEL:{vcard["phone"]}\n')
+            vcf_file.write('END:VCARD\n')
+            vcf_file.write('\n')  # Add a blank line between vCards for readability
 
 def export():
     txt_file_path = "data/database.txt"
     vcf_file_path = "data/nghia-contact-manager.vcf"
-    # print(txt_file_path)
-    # print(vcf_file_path)
-
 
     vcards = read_txt(txt_file_path)
-
-    print(vcards)
-
+    write_vcf(vcards, vcf_file_path)
 
 if __name__ == '__main__':
     export()
