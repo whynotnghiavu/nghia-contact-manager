@@ -21,8 +21,13 @@ content %}
       <td>{{ vcard.phone }}</td>
       <td>{{ vcard.name }}</td>
       <td class="actions">
-        <button onclick="editPhoneNumber('{{ vcard.phone }}')">Edit</button>
-        <button onclick="deletePhoneNumber('{{ vcard.phone }}')">Delete</button>
+        <button onclick="editPhoneNumber('{{ vcard.phone }}')">Sửa</button>
+        <button
+          class="delete-button"
+          onclick="deletePhoneNumber('{{ vcard.phone }}')"
+        >
+          Xóa
+        </button>
       </td>
     </tr>
     {% endfor %}

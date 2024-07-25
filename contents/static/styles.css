@@ -66,3 +66,15 @@ tr.selected {
 input[type="checkbox"] {
   cursor: pointer;
 }
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
