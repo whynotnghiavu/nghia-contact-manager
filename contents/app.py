@@ -38,6 +38,12 @@ def add():
         return redirect(url_for('index'))
 
 
+@app.route('/error')
+def error():
+    vcards = read("data/error.txt")
+
+    return render_template('error.html', vcards=vcards)
+
 # # Các route khác như chỉnh sửa, xóa có thể được thêm vào đây
 if __name__ == '__main__':
     app.run(debug=True)

@@ -31,9 +31,9 @@ tên k giống thì hỏi chọn 1 hay 2?
 Nếu trùng tạo file và trang Trùng lặp
   
  
-Trùng lặp số điện thoại
+
 <!--  -->
-Trước khi lưu phải sort
+Trước khi lưu phải sort theo tên
 
 <!--  -->
 sửa cũng cần kiểm tra trùng lặp
