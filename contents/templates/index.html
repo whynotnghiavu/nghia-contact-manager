@@ -28,8 +28,8 @@
         <tr>
           <td>{{ loop.index }}</td>
           <td><input type="checkbox" class="selectRow" /></td>
+          <td>{{ vcard.phone }}</td>
           <td>{{ vcard.name }}</td>
-          <td>{{ vcard.email }}</td>
           <td class="actions">
             <button onclick="editNumber('{{ number }}')">Edit</button>
             <button onclick="deleteNumber('{{ number }}')">Delete</button>
