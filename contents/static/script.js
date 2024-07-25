@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-function editNumber(number) {
-  alert("Edit: " + number);
+function editPhoneNumber(PhoneNumber) {
+  alert("Edit: " + PhoneNumber);
 }
-function deleteNumber(number) {
-  alert("Delete: " + number);
+function deletePhoneNumber(PhoneNumber) {
+  alert("Delete: " + PhoneNumber);
 }
