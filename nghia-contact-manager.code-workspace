@@ -8,5 +8,9 @@
       "path": "contents"
     }
   ],
-  "settings": {}
+  "settings": {
+    "code-runner.executorMap": {
+      "python": " cd $dir && start Chrome http://127.0.0.1:5000 && python $fileName"
+    }
+  }
 }
