@@ -1,7 +1,7 @@
 import os
 import logging
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from modules.database import read, write
+from modules.database import read, write, write_new
 from modules.vcard import read_vcf
 
 
@@ -74,17 +74,15 @@ def error():
     return render_template('error.html', vcards=vcards)
 
 
-
-
 @app.route('/delete/<phone>', methods=['POST'])
 def delete_vcard(phone):
     vcards = read("data/database.txt")
-    
+
     vcards = [vcard for vcard in vcards if vcard['phone'] != phone]
-    
+
+    write_new("data/database.txt", vcards)
+
     return redirect(url_for('index'))
-
-
 
 
 if __name__ == '__main__':
