@@ -1,37 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 2</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="{{ url_for('index') }}">Danh bạ</a></li>
-        <li><a href="{{ url_for('add') }}">Thêm mới</a></li>
-      </ul>
-    </nav>
+{% extends 'base.html' %}
 
-    <div class="content">
-      <h1>Welcome to Page 2</h1>
-      <p>This is Page 2 content.</p>
-    </div>
+{% block title %}Thêm mới số điện thoại{% endblock %}
 
-    <!-- Form thêm mới -->
-    <h2>Thêm mới số điện thoại</h2>
-    <form action="/add" method="post">
-      <label for="phone">Số điện thoại:</label>
-      <input type="text" id="phone" name="phone" required />
-      <label for="name">Tên:</label>
-      <input type="text" id="name" name="name" required />
-      <button type="submit">Thêm mới</button>
-    </form>
+{% block content %}
+<h1>Thêm mới số điện thoại</h1>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-  </body>
-</html>
+
+
+
+
+
+
+<form action="/add" method="post">
+    <label for="phone">Số điện thoại:</label>
+    <input type="text" id="phone" name="phone" required />
+    <label for="name">Tên:</label>
+    <input type="text" id="name" name="name" required />
+    <button type="submit">Thêm mới</button>
+  </form>
+
+
+
+{% endblock %}
