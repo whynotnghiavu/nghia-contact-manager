@@ -1,6 +1,3 @@
-import quopri
-
-
 def read_txt(txt_file_path):
     with open(txt_file_path, 'r', encoding='utf-8') as txt_file:
         contents = txt_file.readlines()
@@ -17,6 +14,10 @@ def read_txt(txt_file_path):
     return vcards
 
 
+def to_quoted_printable_hex(s):
+    return ''.join(f'={b:02X}' for b in s.encode('utf-8'))
+
+
 def write_vcf(vcards, vcf_file_path):
     with open(vcf_file_path, 'w', encoding='utf-8') as vcf_file:
         for vcard in vcards:
@@ -24,7 +25,7 @@ def write_vcf(vcards, vcf_file_path):
             phone = vcard.get("phone", "")
 
             # Encode name in quoted-printable
-            encoded_name = quopri.encodestring(name.encode('utf-8')).decode('utf-8').replace('\n', '')
+            encoded_name = to_quoted_printable_hex(name)
 
             vcf_file.write('BEGIN:VCARD\n')
             vcf_file.write('VERSION:2.1\n')
