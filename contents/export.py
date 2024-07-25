@@ -24,12 +24,9 @@ def write_vcf(vcards, vcf_file_path):
             name = vcard.get("name", "")
             phone = vcard.get("phone", "")
 
-            # Encode name in quoted-printable
-            encoded_name = to_quoted_printable_hex(name)
-
             vcf_file.write('BEGIN:VCARD\n')
             vcf_file.write('VERSION:2.1\n')
-            vcf_file.write(f'FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:{encoded_name}\n')
+            vcf_file.write(f'FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:{to_quoted_printable_hex(name)}\n')
             vcf_file.write(f'TEL;CELL;PREF:{phone}\n')
             vcf_file.write('END:VCARD\n')
             vcf_file.write('\n')
