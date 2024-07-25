@@ -7,9 +7,5 @@
 <!-- checkbox -->
 <!-- Tick nhiều lựa chọn và xóa? -->
 
-
 <!-- Sửa -->
 <!-- sửa cũng cần kiểm tra trùng lặp -->
-
-
-Xuất

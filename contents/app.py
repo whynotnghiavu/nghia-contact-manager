@@ -88,5 +88,15 @@ def delete_vcard(phone, name, file):
         return redirect(url_for('error'))
 
 
+
+
+
+
+# @app.route('/export')
+# def export(): 
+# export
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
