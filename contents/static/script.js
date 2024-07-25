@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function editPhoneNumber(phone) {
-  alert("Edit: " + phone);
+  alert("Chưa phát triển: " + phone);
 }
 
 function deletePhoneNumber(phone, name, file) {
