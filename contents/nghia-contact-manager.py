@@ -1,8 +1,6 @@
 import quopri
 
 
-
-
 def parse_vcard(contents):
     for i, content in enumerate(contents):
         if content.startswith('FN;'):
@@ -16,13 +14,6 @@ def parse_vcard(contents):
         name = name.replace("==", "=")
     name = quopri.decodestring(name)
     name = name.decode('utf-8')
-
-
-
-
-
-
-
 
     phone = contents[-1]
     phone = phone.split(':')[-1]
