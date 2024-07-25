@@ -22,9 +22,10 @@ def write_vcf(vcards, vcf_file_path):
     with open(vcf_file_path, 'w', encoding='utf-8') as vcf_file:
         for vcard in vcards:
             vcf_file.write('BEGIN:VCARD\n')
-            vcf_file.write('VERSION:3.0\n')
+            vcf_file.write('VERSION:2.1\n')
             vcf_file.write(f'FN:{quopri.encodestring(vcard["name"].encode("utf-8")).decode("utf-8")}\n')
-            vcf_file.write(f'TEL:{vcard["phone"]}\n')
+# FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=4D=E1=BA=B9
+            vcf_file.write(f'TEL;CELL;PREF:{vcard["phone"]}\n')
             vcf_file.write('END:VCARD\n')
             vcf_file.write('\n')  # Add a blank line between vCards for readability
 
