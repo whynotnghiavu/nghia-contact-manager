@@ -41,7 +41,7 @@ sửa cũng cần kiểm tra trùng lặp
 
 
 
-
+Thêm log cho các trường hợp
 
         # if phone!= vcard["phone"]: thêm dữ liệu mới
         # if phone= vcard["phone"]: xét name

@@ -21,6 +21,13 @@ def index():
 
 
 
+
+Thêm log cho các trường hợp
+
+        # if phone!= vcard["phone"]: thêm dữ liệu mới
+        # if phone= vcard["phone"]: xét name
+        #     if name = vcard["name"]: bỏ qua không làm gì cả
+        #     if name != vcard["name"]: ghi vào file error.txt
  
 def process_vcard(vcards, phone, name):
     phone_exists = False
@@ -69,7 +76,7 @@ def upload_file():
 
 
 
- 
+
 
 
 
