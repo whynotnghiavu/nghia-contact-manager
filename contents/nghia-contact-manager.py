@@ -16,25 +16,38 @@
 # N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:;=4D=E1=BA=B9;;;
 # FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=4D=E1=BA=B9
 def parse_vcard(temp):
-    vcard = {}
-
-    for line in temp:
-        if line.startswith('N;'):
-            # field, name = decode_vcard_line(line)
-            # vcard['Name'] = name
-            vcard['name'] = line
-        elif line.startswith('FN;'):
-            # field, full_name = decode_vcard_line(line)
-            # vcard['Full Name'] = full_name
-            vcard['full_name'] = line
+    print(temp)
+    temp = "".join(temp)
+    print(temp)
 
 
+    return "vcard"
+
+    
+    # vcard = {}
+
+    # for line in temp:
 
 
-        elif line.startswith('TEL;'):
-            phone = line.split(':')[-1]
-            vcard['phone'] = phone.strip()
-    return vcard
+    #     # line.startswith('N;'):
+    #     #     # field, name = decode_vcard_line(line)
+    #     #     # vcard['Name'] = name
+    #     #     vcard['name'] = line
+    #     # elif
+
+
+    #     if  line.startswith('FN;'):
+    #         # field, full_name = decode_vcard_line(line)
+    #         # vcard['Full Name'] = full_name
+    #         vcard['full_name'] = line
+
+
+
+
+    #     elif line.startswith('TEL;'):
+    #         phone = line.split(':')[-1]
+    #         vcard['phone'] = phone.strip()
+    # return vcard
 
 
 
@@ -65,7 +78,6 @@ def read_vcf(vcf_file_path):
 
 
 def main():
-    vcf_file_path = "data/Danh bạ.vcf"
     vcf_file_path = "data/Danh bạ_002.vcf"
 
     vcards = read_vcf(vcf_file_path)
