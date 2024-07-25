@@ -90,8 +90,6 @@ def delete_vcard(phone, name, file):
         return redirect(url_for('error'))
 
 
-
-
 @app.route('/export')
 def export():
     txt_file_path = "data/database.txt"
@@ -100,10 +98,7 @@ def export():
     vcards = read_txt(txt_file_path)
     write_vcf(vcards, vcf_file_path)
 
-
-
     return send_file(vcf_file_path, as_attachment=True)
-
 
 
 if __name__ == '__main__':
