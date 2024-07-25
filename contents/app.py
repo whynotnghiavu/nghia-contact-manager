@@ -18,8 +18,6 @@ def add():
     if request.method == 'GET':
         return render_template('add.html')
     if request.method == 'POST':
-
-
         phone = request.form.get('phone')
         name = request.form.get('name')
 
