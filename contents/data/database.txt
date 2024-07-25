@@ -1,5 +1,3 @@
-0123456789, xxxxxxxxxxxxxxxxxxx
-0987654321, xxxxxxxxxxxxxxxxxxx
-0234567890, xxxxxxxxxxxxxxxxxxx
-0345678901, xxxxxxxxxxxxxxxxxxx
-0456789012, xxxxxxxxxxxxxxxxxxx
+123-456-7890,John Doe
+987-654-3210,Jane Smith
+555-123-4567,Emily Johnson
