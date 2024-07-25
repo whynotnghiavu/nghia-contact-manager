@@ -6,7 +6,7 @@ content %}
   <thead>
     <tr>
       <th>STT</th>
-      <th><input type="checkbox" id="selectAll" /></th>
+      <!-- <th><input type="checkbox" id="selectAll" /></th> -->
       <th>Số điện thoại</th>
       <th>Tên</th>
       <th>Chỉnh sửa</th>
@@ -17,7 +17,7 @@ content %}
     {% for vcard in vcards %}
     <tr>
       <td>{{ loop.index }}</td>
-      <td><input type="checkbox" class="selectRow" /></td>
+      <!-- <td><input type="checkbox" class="selectRow" /></td> -->
       <td>{{ vcard.phone }}</td>
       <td>{{ vcard.name }}</td>
       <td class="actions">
