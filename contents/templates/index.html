@@ -1,48 +1,32 @@
-{% extends 'base.html' %}
-
-{% block title %}Danh bạ{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}Danh bạ{% endblock %} {% block
+content %}
 <h1>Danh bạ</h1>
 
-
-
-
-    
-
-
-    
-
 <table>
-    <thead>
-      <tr>
-        <th>STT</th>
-        <th><input type="checkbox" id="selectAll" /></th>
-        <th>Số điện thoại</th>
-        <th>Tên</th>
-        <th>Chỉnh sửa</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th><input type="checkbox" id="selectAll" /></th>
+      <th>Số điện thoại</th>
+      <th>Tên</th>
+      <th>Chỉnh sửa</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      {% for vcard in vcards %}
-      <tr>
-        <td>{{ loop.index }}</td>
-        <td><input type="checkbox" class="selectRow" /></td>
-        <td>{{ vcard.phone }}</td>
-        <td>{{ vcard.name }}</td>
-        <td class="actions">
-          <button onclick="editNumber('{{ vcard.phone }}')">Edit</button>
-          <button onclick="deleteNumber('{{ vcard.phone }}')">Delete</button>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-
-
-
-
+  <tbody>
+    {% for vcard in vcards %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td><input type="checkbox" class="selectRow" /></td>
+      <td>{{ vcard.phone }}</td>
+      <td>{{ vcard.name }}</td>
+      <td class="actions">
+        <button onclick="editNumber('{{ vcard.phone }}')">Edit</button>
+        <button onclick="deleteNumber('{{ vcard.phone }}')">Delete</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
