@@ -1,9 +1,4 @@
-# python
-
-# test.csv
-
-# sắp xếp lại theo cột đầu tiên
-
+ 
 # pip install pandas
 import pandas as pd
 

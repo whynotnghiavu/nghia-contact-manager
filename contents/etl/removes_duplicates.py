@@ -1,5 +1,5 @@
 # Read the file and get its contents
-with open("data/error.txt", "r", encoding="utf-8") as file:
+with open("error.txt", "r", encoding="utf-8") as file:
     contents = file.readlines()
 
 # Print the number of lines before removing duplicates
@@ -12,5 +12,5 @@ contents = list(set(contents))
 print(len(contents))
 
 # Write the unique lines to a new file
-with open("_error.txt", "w", encoding="utf-8") as file:
+with open("error_.txt", "w", encoding="utf-8") as file:
     file.writelines(contents)
