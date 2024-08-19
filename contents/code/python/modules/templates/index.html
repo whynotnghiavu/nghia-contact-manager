@@ -1,0 +1,266 @@
+{% extends '_base.html' %}
+<!--  -->
+{% block title %}Trang chủ{% endblock %}
+<!--  -->
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+{% endblock %}
+<!--  -->
+{% block content %}
+<!--  -->
+<h1>Quản lý danh bạ</h1>
+<!--  -->
+<div class="card">
+<!--  -->
+<form method="get" action="{{ url_for('index') }}">
+<input
+type="text"
+name="search"
+value="{{ search_query }}"
+placeholder="Tìm kiếm"
+required
+/>
+</form>
+<!--  -->
+<br />
+<!--  -->
+<form action="/upload" method="POST" enctype="multipart/form-data">
+<label for="file" class="upload-button">
+<svg
+class="icon upload-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" x2="12" y1="3" y2="15"></line>
+</svg>
+VCF
+</label>
+<input
+type="file"
+id="file"
+name="file"
+accept=".vcf"
+required
+onchange="this.form.submit()"
+style="display: none"
+/>
+</form>
+<!--  -->
+<form
+action="{{ url_for('download_csv') }}"
+method="get"
+style="display: inline"
+>
+<button class="download" type="submit">
+<svg
+class="icon download-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+CSV
+</button>
+</form>
+<!--  -->
+<form
+action="{{ url_for('download_txt') }}"
+method="get"
+style="display: inline"
+>
+<button class="download" type="submit">
+<svg
+class="icon download-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+TXT
+</button>
+</form>
+<!--  -->
+<form
+action="{{ url_for('download_vcf') }}"
+method="get"
+style="display: inline"
+>
+<button class="download" type="submit">
+<svg
+class="icon download-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+VCF
+</button>
+</form>
+<!--  -->
+<form action="{{ url_for('convert') }}" method="get" style="display: inline">
+<button class="convert" type="submit">
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+fill="none"
+viewBox="0 0 24 24"
+class="icon-md-heavy"
+>
+<path
+fill="currentColor"
+d="M3.07 10.876C3.623 6.436 7.41 3 12 3a9.15 9.15 0 0 1 6.012 2.254V4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1H15a1 1 0 1 1 0-2h1.957A7.15 7.15 0 0 0 12 5a7 7 0 0 0-6.946 6.124 1 1 0 1 1-1.984-.248m16.992 1.132a1 1 0 0 1 .868 1.116C20.377 17.564 16.59 21 12 21a9.15 9.15 0 0 1-6-2.244V20a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7.043A7.15 7.15 0 0 0 12 19a7 7 0 0 0 6.946-6.124 1 1 0 0 1 1.116-.868"
+data-darkreader-inline-fill=""
+style="--darkreader-inline-fill: currentColor"
+></path>
+</svg>
+Chuyển đổi đầu số
+</button>
+</form>
+<!--  -->
+<div class="card-content">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Số điện thoại</th>
+<th>Tên</th>
+<th>Zalo</th>
+<th>Chỉnh sửa</th>
+<th>Xóa</th>
+</tr>
+</thead>
+<!--  -->
+<tbody>
+{% for contact in contacts %}
+<tr>
+<td>{{ contact.id }}</td>
+<td>{{ contact.phone }}</td>
+<td>{{ contact.name }}</td>
+
+<td>
+<form
+action="https://zalo.me/{{ contact.phone }}"
+method="get"
+style="display: inline"
+>
+<button class="zalo" type="submit">
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg>
+</button>
+</form>
+</td>
+
+<td>
+<form
+action="{{ url_for('edit', id=contact.id) }}"
+method="get"
+style="display: inline"
+>
+<button class="edit" type="submit">
+<svg
+class="icon file-pen-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path
+d="M12 22h6a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v10"
+></path>
+<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+<path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z"></path>
+</svg>
+</button>
+</form>
+</td>
+
+<td>
+<form
+action="{{ url_for('delete', id=contact.id) }}"
+method="post"
+style="display: inline"
+onsubmit="return confirm('Bạn có chắc chắn muốn xóa?')"
+>
+<button class="delete" type="submit">
+<svg
+class="icon trash-icon"
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M3 6h18"></path>
+<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+</svg>
+</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<!--  -->
+{% endblock %}

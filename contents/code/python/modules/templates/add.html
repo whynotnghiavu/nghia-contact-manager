@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+<!--  -->
+{% block title %}Thêm mới{% endblock %}
+<!--  -->
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}" />
+{% endblock %}
+<!--  -->
+{% block content %}
+<!--  -->
+<h1>Thêm mới liên hệ</h1>
+<!--  -->
+
+<div class="center">
+<form method="post">
+<label for="phone">Phone:</label>
+<input
+type="text"
+id="phone"
+name="phone"
+placeholder="Số điện thoại..."
+required
+/>
+<br />
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" placeholder="Tên..." required />
+<br />
+<input type="submit" value="Thêm mới" />
+<!--  -->
+
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %}
+<ul class="flashes">
+{% for category, message in messages %}
+<li class="{{ category }}">{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %} {% endwith %}
+<!--  -->
+</form>
+</div>
+<!--  -->
+{% endblock %}
