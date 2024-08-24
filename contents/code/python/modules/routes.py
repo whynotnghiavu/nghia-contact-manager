@@ -101,7 +101,7 @@ def convert():
                     existing_contact = Contact.query.filter_by(phone=new_phone).first()
                     if existing_contact:
                         contact.phone = new_phone
-                        contact.name = contact.name + " + " + existing_contact.name
+                        contact.name = contact.name + " = " + existing_contact.name
                         db.session.delete(existing_contact)
                     else:
                         contact.phone = new_phone
@@ -139,7 +139,7 @@ def upload_file():
                 db.session.commit()
             else:
                 if name != existing_contact.name:
-                    existing_contact.name += f" + {name}"
+                    existing_contact.name += f" = {name}"
                     db.session.commit()
 
     return redirect(url_for('index'))
