@@ -26,6 +26,14 @@ def add():
         phone = request.form.get('phone')
         name = request.form.get('name')
 
+        while "  " in phone:
+            phone = phone.replace("  ", " ")
+        phone = phone.replace("  ", " ").strip()
+
+        while "  " in name:
+            name = name.replace("  ", " ")
+        name = name.replace("  ", " ").strip()
+
         if Contact.query.filter_by(phone=phone).first():
             flash('Số điện thoại đã tồn tại!', 'error')
             return redirect(url_for('add'))
@@ -45,6 +53,14 @@ def edit(id):
     if request.method == 'POST':
         phone = request.form.get('phone')
         name = request.form.get('name')
+
+        while "  " in phone:
+            phone = phone.replace("  ", " ")
+        phone = phone.replace("  ", " ").strip()
+
+        while "  " in name:
+            name = name.replace("  ", " ")
+        name = name.replace("  ", " ").strip()
 
         if phone != contact.phone and Contact.query.filter_by(phone=phone).first():
             flash('Số điện thoại đã tồn tại!', 'error')
@@ -68,6 +84,19 @@ def delete(id):
 
 @app.route('/convert')
 def convert():
+    
+    contacts = Contact.query.all()
+    for contact in contacts:
+        while "  " in contact.phone:
+            contact.phone = contact.phone.replace("  ", " ")
+        contact.phone = contact.phone.replace("  ", " ").strip()
+
+        while "  " in contact.name:
+            contact.name = contact.name.replace("  ", " ")
+        contact.name = contact.name.replace("  ", " ").strip()
+    db.session.commit()
+
+
     law = {
         # viettel
         "016": "03",
@@ -131,6 +160,14 @@ def upload_file():
         for contact in contacts:
             phone = contact["phone"]
             name = contact["name"]
+
+            while "  " in phone:
+                phone = phone.replace("  ", " ")
+            phone = phone.replace("  ", " ").strip()
+
+            while "  " in name:
+                name = name.replace("  ", " ")
+            name = name.replace("  ", " ").strip()
 
             existing_contact = Contact.query.filter_by(phone=phone).first()
             if not existing_contact:
